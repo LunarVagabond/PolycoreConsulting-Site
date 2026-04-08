@@ -1,17 +1,109 @@
 ---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Contact from '~/components/widgets/Contact.astro';
 
+const metadata = {
+  title: 'Polycore Consulting',
+  ignoreTitleTemplate: true,
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout metadata={metadata}>
+  <Hero
+    actions={[
+      { variant: 'primary', text: 'Book Consultation', href: '#contact' },
+      { text: 'Explore Services', href: '#services' },
+    ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Polycore Consulting strategy workshop' }}
+  >
+    <Fragment slot="title">
+      Build confidence in your next <span class="text-accent dark:text-white">technology decision</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Polycore Consulting helps organizations modernize cloud, AI, and delivery operations with pragmatic strategy and
+      measurable execution.
+    </Fragment>
+  </Hero>
+
+  <Features
+    id="services"
+    tagline="Services"
+    title="Consulting built for high-stakes delivery"
+    subtitle="From executive planning to hands-on implementation, we close the gap between strategy and operational outcomes."
+    items={[
+      {
+        title: 'Technology Strategy',
+        description: 'Roadmaps and architecture priorities that align engineering effort to business goals.',
+        icon: 'tabler:route',
+      },
+      {
+        title: 'AI and Automation',
+        description: 'Realistic AI adoption plans and workflow automation opportunities with clear ROI targets.',
+        icon: 'tabler:brain',
+      },
+      {
+        title: 'Cloud Modernization',
+        description: 'Resilience, performance, and cost posture improvements across infrastructure and delivery pipelines.',
+        icon: 'tabler:cloud-cog',
+      },
+      {
+        title: 'Delivery Excellence',
+        description: 'Operating rhythms, governance, and team enablement for predictable execution.',
+        icon: 'tabler:checklist',
+      },
+    ]}
+  />
+
+  <Steps
+    id="approach"
+    title="How we engage"
+    items={[
+      {
+        title: 'Step 1: <span class="font-medium">Assess</span>',
+        description: 'Rapid discovery on priorities, constraints, and delivery risk.',
+        icon: 'tabler:search',
+      },
+      {
+        title: 'Step 2: <span class="font-medium">Align</span>',
+        description: 'Define a practical plan with milestones, ownership, and measurable targets.',
+        icon: 'tabler:arrows-shuffle',
+      },
+      {
+        title: 'Step 3: <span class="font-medium">Execute</span>',
+        description: 'Hands-on advisory through implementation and team enablement.',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Step 4: <span class="font-medium">Scale</span>',
+        description: 'Operationalize what works and build repeatable delivery capability.',
+        icon: 'tabler:check',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80',
+      alt: 'Consulting team in strategy session',
+    }}
+  />
+
+  <Contact
+    id="contact"
+    title="Start the conversation"
+    subtitle="Share your goals and we will follow up with a clear recommendation and next steps."
+    inputs={[
+      { type: 'text', name: 'name', label: 'Name' },
+      { type: 'email', name: 'email', label: 'Email' },
+      { type: 'text', name: 'company', label: 'Company' },
+    ]}
+    textarea={{
+      label: 'How can we help?',
+      name: 'message',
+      placeholder: 'Tell us your objectives, timelines, and constraints.',
+      rows: 5,
+    }}
+    description="We typically respond within one business day."
+  />
+</Layout>
