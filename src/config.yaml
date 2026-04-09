@@ -18,9 +18,9 @@ metadata:
   openGraph:
     site_name: Polycore Consulting
     images:
-      - url: '~/assets/images/default.png'
-        width: 1200
-        height: 628
+      - url: '/PCCBase.png'
+        width: 1408
+        height: 768
     type: website
   twitter:
     handle:

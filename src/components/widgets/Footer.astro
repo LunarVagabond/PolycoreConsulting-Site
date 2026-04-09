@@ -26,6 +26,7 @@ export interface Props {
 const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
 
 const flatNavLinks = links.flatMap((group) => group.links ?? []);
+const logoSrc = `${import.meta.env.BASE_URL}PCCTransparent.png`;
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
@@ -34,13 +35,29 @@ const flatNavLinks = links.flatMap((group) => group.links ?? []);
     class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300 intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
   >
     <div
-      class="flex flex-col gap-3 py-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-6 sm:gap-y-2 sm:py-3"
+      class="grid grid-cols-1 gap-y-3 py-4 sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-x-6 sm:gap-y-2 sm:py-3"
     >
-      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-        <a class="font-semibold text-gray-900 dark:text-slate-100 shrink-0" href={getHomePermalink()}>{SITE?.name}</a>
+      <div class="min-w-0 justify-self-start">
+        <a
+          class="inline-flex items-center gap-2 font-semibold text-gray-900 dark:text-slate-100 shrink-0 text-sm"
+          href={getHomePermalink()}
+        >
+          <img
+            src={logoSrc}
+            alt=""
+            width="500"
+            height="500"
+            class="h-6 w-auto opacity-90 dark:opacity-95"
+            decoding="async"
+          />
+          {SITE?.name}
+        </a>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm sm:justify-self-center min-w-0">
         {
           secondaryLinks.length > 0 && (
-            <span class="text-muted flex flex-wrap items-center gap-x-1">
+            <span class="text-muted flex flex-wrap items-center justify-center gap-x-1">
               {secondaryLinks.map(({ text, href }, index) => (
                 <>
                   {index !== 0 ? <span class="text-gray-300 dark:text-slate-600">·</span> : null}
@@ -54,50 +71,62 @@ const flatNavLinks = links.flatMap((group) => group.links ?? []);
             </span>
           )
         }
-      </div>
-
-      {
-        flatNavLinks.length > 0 && (
-          <nav class="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm" aria-label="Footer">
-            {flatNavLinks.map(({ text, href, ariaLabel }) => (
-              <a
-                class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
-                href={href}
-                aria-label={ariaLabel}
-              >
-                <Fragment set:html={text} />
-              </a>
-            ))}
-          </nav>
-        )
-      }
-
-      {
-        socialLinks?.length ? (
-          <ul class="flex -ml-2 items-center sm:ml-0">
-            {socialLinks.map(({ ariaLabel, href, text, icon }) => (
-              <li>
+        {
+          secondaryLinks.length > 0 && flatNavLinks.length > 0 && (
+            <span class="text-gray-300 dark:text-slate-600" aria-hidden="true">
+              ·
+            </span>
+          )
+        }
+        {
+          flatNavLinks.length > 0 && (
+            <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1" aria-label="Footer">
+              {flatNavLinks.map(({ text, href, ariaLabel }) => (
                 <a
-                  class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2 inline-flex items-center"
-                  aria-label={ariaLabel}
+                  class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
                   href={href}
+                  aria-label={ariaLabel}
                 >
-                  {icon && <Icon name={icon} class="w-4 h-4" />}
                   <Fragment set:html={text} />
                 </a>
-              </li>
-            ))}
-          </ul>
-        ) : null
-      }
+              ))}
+            </nav>
+          )
+        }
+      </div>
 
-      {
-        footNote && (
-          <div class="text-xs text-muted sm:ml-auto sm:text-right">
-            <Fragment set:html={footNote} />
-          </div>
-        )
-      }
+      <div
+        class:list={[
+          'flex flex-col items-center gap-2 min-w-0 sm:justify-self-end sm:items-end',
+          !(socialLinks?.length || footNote) && 'hidden sm:flex',
+        ]}
+      >
+        {
+          socialLinks?.length ? (
+            <ul class="flex -ml-2 items-center justify-center sm:ml-0 sm:justify-end">
+              {socialLinks.map(({ ariaLabel, href, text, icon }) => (
+                <li>
+                  <a
+                    class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2 inline-flex items-center"
+                    aria-label={ariaLabel}
+                    href={href}
+                  >
+                    {icon && <Icon name={icon} class="w-4 h-4" />}
+                    <Fragment set:html={text} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : null
+        }
+        {
+          footNote && (
+            <div class="text-xs text-muted text-center sm:text-right">
+              <Fragment set:html={footNote} />
+            </div>
+          )
+        }
+      </div>
     </div>
   </div>
 </footer>
