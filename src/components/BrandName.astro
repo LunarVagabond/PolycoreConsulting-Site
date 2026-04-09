@@ -1,0 +1,16 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<span class:list={['inline-flex items-baseline flex-wrap gap-0', className]}>
+  <span class="font-light tracking-tight">Poly</span>
+  <span
+    class="font-bold tracking-tight inline-block bg-gradient-to-br from-slate-600 via-slate-300 to-slate-500 bg-clip-text text-transparent dark:from-slate-300 dark:via-slate-50 dark:to-slate-400"
+    >Core</span
+  >
+  <span class="font-medium not-italic pl-1">Consulting</span>
+</span>

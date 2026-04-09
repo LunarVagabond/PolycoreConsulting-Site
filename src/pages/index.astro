@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import BrandName from '~/components/BrandName.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Features from '~/components/widgets/Features.astro';
 import Steps from '~/components/widgets/Steps.astro';
@@ -20,16 +21,17 @@ const metadata = {
     image={{ src: '~/assets/images/hero-image.png', alt: 'Polycore Consulting strategy workshop' }}
   >
     <Fragment slot="title">
-      Build confidence in your next <span class="text-accent dark:text-white">technology decision</span>
+      Build confidence in your next <span class="text-accent">technology decision</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      Polycore Consulting helps organizations modernize cloud, AI, and delivery operations with pragmatic strategy and
+      <BrandName /> helps organizations modernize cloud, AI, and delivery operations with pragmatic strategy and
       measurable execution.
     </Fragment>
   </Hero>
 
   <Features
+    sectionVariant="alt"
     id="services"
     tagline="Services"
     title="Consulting built for high-stakes delivery"
@@ -90,6 +92,7 @@ const metadata = {
   />
 
   <Contact
+    sectionVariant="alt"
     id="contact"
     title="Start the conversation"
     subtitle="Share your goals and we will follow up with a clear recommendation and next steps."

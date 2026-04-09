@@ -101,6 +101,8 @@ export interface Video {
 export interface Widget {
   id?: string;
   isDark?: boolean;
+  /** Surface band: `base` matches page, `alt` is a subtle alternate (light/dark). */
+  sectionVariant?: 'base' | 'alt';
   bg?: string;
   classes?: Record<string, string | Record<string, string>>;
 }

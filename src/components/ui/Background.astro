@@ -1,11 +1,19 @@
 ---
 export interface Props {
   isDark?: boolean;
+  /** Alternating section surfaces (ignored when isDark widget style is used). */
+  sectionVariant?: 'base' | 'alt';
 }
 
-const { isDark = false } = Astro.props;
+const { isDark = false, sectionVariant = 'base' } = Astro.props;
+
+const sectionBg = isDark
+  ? 'bg-dark dark:bg-transparent'
+  : sectionVariant === 'alt'
+    ? 'bg-section-alt'
+    : 'bg-section-base';
 ---
 
-<div class:list={['absolute inset-0', { 'bg-dark dark:bg-transparent': isDark }]}>
+<div class:list={['absolute inset-0', sectionBg]}>
   <slot />
 </div>

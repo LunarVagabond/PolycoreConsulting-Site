@@ -18,11 +18,33 @@
   .text-muted {
     color: var(--aw-color-text-muted);
   }
+
+  .bg-header {
+    background-color: var(--aw-color-bg-header);
+  }
+
+  .bg-section-base {
+    background-color: var(--aw-color-bg-section-base);
+  }
+
+  .bg-section-alt {
+    background-color: var(--aw-color-bg-section-alt);
+  }
+
+  /** Silver brand accent: section taglines (pairs with “Core” gradient) */
+  .tagline-silver {
+    @apply inline-block font-bold tracking-wide uppercase bg-gradient-to-br from-slate-600 via-slate-400 to-slate-600 bg-clip-text text-transparent dark:from-slate-300 dark:via-slate-100 dark:to-slate-400;
+  }
+
+  /** Subtle silver section rules */
+  .border-silver-subtle {
+    @apply border-b border-slate-300/55 dark:border-slate-500/30;
+  }
 }
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
+    @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-400/45 dark:hover:bg-slate-800/80 dark:hover:border-slate-400/55 cursor-pointer;
   }
 
   .btn-primary {
@@ -39,13 +61,26 @@
 }
 
 #header.scroll > div:first-child {
-  @apply bg-page md:bg-white/90 md:backdrop-blur-md;
+  @apply bg-header md:backdrop-blur-md;
   box-shadow: 0 0.375rem 1.5rem 0 rgb(140 152 164 / 13%);
 }
+
+@media (min-width: 768px) {
+  #header.scroll > div:first-child {
+    background-color: color-mix(in srgb, var(--aw-color-bg-header) 90%, transparent);
+  }
+}
+
 .dark #header.scroll > div:first-child,
 #header.scroll.dark > div:first-child {
-  @apply bg-page md:bg-[#030621e6] border-b border-gray-500/20;
   box-shadow: none;
+}
+
+@media (min-width: 768px) {
+  .dark #header.scroll > div:first-child,
+  #header.scroll.dark > div:first-child {
+    background-color: color-mix(in srgb, var(--aw-color-bg-header) 92%, transparent);
+  }
 }
 /* #header.scroll > div:last-child {
   @apply py-3;

@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { SITE } from 'astrowind:config';
+import BrandName from '~/components/BrandName.astro';
 import { getHomePermalink } from '~/utils/permalinks';
 
 interface Link {
@@ -29,7 +29,12 @@ const flatNavLinks = links.flatMap((group) => group.links ?? []);
 const logoSrc = `${import.meta.env.BASE_URL}PCCTransparent.png`;
 ---
 
-<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
+<footer
+  class:list={[
+    { dark: theme === 'dark' },
+    'relative border-t border-slate-300/80 dark:border-slate-500/35 not-prose',
+  ]}
+>
   <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
   <div
     class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300 intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
@@ -50,7 +55,7 @@ const logoSrc = `${import.meta.env.BASE_URL}PCCTransparent.png`;
             class="h-6 w-auto opacity-90 dark:opacity-95"
             decoding="async"
           />
-          {SITE?.name}
+          <BrandName />
         </a>
       </div>
 
@@ -122,7 +127,11 @@ const logoSrc = `${import.meta.env.BASE_URL}PCCTransparent.png`;
         {
           footNote && (
             <div class="text-xs text-muted text-center sm:text-right">
-              <Fragment set:html={footNote} />
+              <span class="text-muted">&copy; {new Date().getFullYear()}</span>
+              {' '}
+              <BrandName />
+              {' '}
+              · {footNote}
             </div>
           )
         }

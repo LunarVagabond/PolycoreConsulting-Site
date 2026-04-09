@@ -1,5 +1,5 @@
 ---
-import { SITE } from 'astrowind:config';
+import BrandName from '~/components/BrandName.astro';
 
 const logoSrc = `${import.meta.env.BASE_URL}PCCTransparent.png`;
 ---
@@ -13,5 +13,5 @@ const logoSrc = `${import.meta.env.BASE_URL}PCCTransparent.png`;
     class="h-9 w-auto md:h-8 shrink-0"
     decoding="async"
   />
-  <span class="text-2xl md:text-xl font-bold text-gray-900 dark:text-white">{SITE?.name}</span>
+  <BrandName class="text-2xl md:text-xl text-gray-900 dark:text-white" />
 </span>

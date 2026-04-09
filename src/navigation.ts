@@ -39,7 +39,5 @@ export const footerData = {
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ],
   socialLinks: [],
-  footNote: `
-    &copy; ${new Date().getFullYear()} Polycore Consulting · All rights reserved.
-  `,
+  footNote: 'All rights reserved.',
 };

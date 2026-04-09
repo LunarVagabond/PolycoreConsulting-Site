@@ -15,12 +15,19 @@ const {
 
   id,
   isDark = false,
+  sectionVariant = 'base',
   classes = {},
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  sectionVariant={sectionVariant}
+  containerClass={`max-w-5xl ${classes?.container ?? ''}`}
+  bg={bg}
+>
   <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
   <ItemGrid
     items={items}
@@ -29,7 +36,8 @@ const {
     classes={{
       container: '',
       title: 'md:text-[1.3rem]',
-      icon: 'text-white bg-primary rounded-full w-10 h-10 p-2 md:w-12 md:h-12 md:p-3 mr-4 rtl:ml-4 rtl:mr-0',
+      icon:
+        'text-white bg-primary rounded-full w-10 h-10 p-2 md:w-12 md:h-12 md:p-3 mr-4 rtl:ml-4 rtl:mr-0 ring-1 ring-slate-300/70 dark:ring-slate-300/25 shadow-sm',
       ...((classes?.items as Record<string, never>) ?? {}),
     }}
   />
